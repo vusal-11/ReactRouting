@@ -45,6 +45,10 @@ button {
   font-weight: 500;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 textarea:hover,
 input:hover,
 button:hover {
