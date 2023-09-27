@@ -1,14 +1,13 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getContact } from "../contacts";
+
+export async function loader({ params }) {
+  const contact = await getContact(params.contactId);
+  return { contact };
+}
 
 export default function Contact() {
-  const contact = {
-    firstName: "Your",
-    lastName: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    isFavorite: true,
-  };
+  const { contact } = useLoaderData();
 
   return (
     <div id="contact">
@@ -21,9 +20,9 @@ export default function Contact() {
 
       <div>
         <h1>
-          {(contact.firstName || contact.lastName) ? (
+          {(contact.first || contact.last) ? (
             <>
-              {contact.firstName} {contact.lastName}
+              {contact.first} {contact.last}
             </>
           ) : (
             <i>No Name</i>
@@ -71,7 +70,7 @@ export default function Contact() {
 
 function Favorite({ contact }) {
   // yes, this is a `let` for later
-  let isFavorite = contact.isFavorite;
+  let isFavorite = contact.favorite;
   return (
     <Form method="post">
       <button
