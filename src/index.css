@@ -100,6 +100,10 @@ form[action$="destroy"] button {
   border-width: 0;
 }
 
+#mar{
+  margin: 2px;
+}
+
 #root {
   display: flex;
   height: 100%;
